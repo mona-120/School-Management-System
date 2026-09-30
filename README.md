@@ -30,6 +30,41 @@ It applies various relational database concepts to ensure data integrity and imp
 * Identified performance bottlenecks (e.g., expensive in-memory `Sort` operations).
 * Designed and applied a **Composite Non-Clustered Index**.
 
+## Getting Started & Execution Order
+
+To set up and run the database locally without dependency conflicts, follow the steps below using SQL Server Management Studio (SSMS) or Azure Data Studio.
+
+### Prerequisites
+* Microsoft SQL Server (2019 or later)
+* SQL Server Management Studio (SSMS)
+
+### Run Order
+Execute the SQL scripts strictly in the following sequential order:
+
+1. **`schema.sql`**
+   * Creates the `SchoolSystem` database, core tables (`Department`, `Teacher`, `TeacherPhone`, `Student`, `Course`, `Enrollement`), and defines primary/foreign keys and computed columns.
+
+2. **`functions.sql`**
+   * Creates custom scalar and table-valued functions (`fn_CalculateAge`, `fn_GetCoursesByStudent`, etc.).
+
+3. **`views.sql`**
+   * Creates analytical views (`vw_DepartmentSummary`, `vw_TeacherCourseLoad`, `vw_StudentFullReport`, `vw_DepartmentTopStudent`).
+
+4. **`procedures.sql`**
+   * Creates stored procedures for business transactions and student enrollment (`sp_GetStudentsByDepartment`, `sp_EnrollStudent`, `sp_TransferStudent`, `sp_AddCourse`).
+
+5. **`triggers.sql`**
+   * Creates the `AuditTable` and attaches automated audit/validation triggers (`trg_AddEnrollment`, `trg_UpdateEnrollement`, `trg_DeleteEnrollement`).
+
+6. **`indexes.sql`**
+   * Implements non-clustered and composite indexes for query optimization.
+
+7. **`seed.sql`**
+   * Seeds testing records and lookup data into the database.
+
+8. **`joins.sql`**
+   * Contains verification queries, complex JOINs, and reporting aggregations to test business requirements.
+
 
 
 
